@@ -3,16 +3,20 @@ import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {
-  state = { motivation: '' };
+  state = { advice: '' };
 
   componentDidMount() {
-    
+    this.fetchAdvice();
   }
 
-  fetchMotivation = () => {
-    axios.get(	https://api.adviceslip.com/advice)
+  fetchAdvice = () => {
+    axios.get('https://api.adviceslip.com/advice')
       .then((res) => {
-        console.log(res);
+        const { advice } = res.data.slip;
+
+        this.setState({ advice });
+
+        console.log(advice)
       })
       .catch((error) => {
         console.log(error)
@@ -20,9 +24,16 @@ class App extends React.Component {
   }
 
   render() {
+    const { advice }= this.state;
+
     return (
-      <h1>APP</h1>
-    )
+      <div className='app'>
+         <div className='card'>
+            <h1 className='heading'>{advice}</h1>
+         </div>
+      </div>
+      
+    );
   }
 }
 
