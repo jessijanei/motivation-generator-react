@@ -16,7 +16,6 @@ class App extends React.Component {
 
         this.setState({ advice });
 
-        console.log(advice)
       })
       .catch((error) => {
         console.log(error)
@@ -30,6 +29,9 @@ class App extends React.Component {
       <div className='app'>
          <div className='card'>
             <h1 className='heading'>{advice}</h1>
+            <button className='button' onClick={this.fetchAdvice}>
+              <span>More Motivation</span>
+            </button>
          </div>
       </div>
       
